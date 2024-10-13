@@ -1,0 +1,123 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block banner_slider %}
+<style>
+  .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+  }
+
+  .products-heading {
+    font-family: 'Your Preferred Font', sans-serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    height: 100%;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .product-card-body {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .product-card-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .product-card-price {
+    color: #f00;
+    color: #000;
+  }
+  
+  .carousel-inner .carousel-item {
+    transition: transform 0.5s ease-in-out;
+  }
+</style>
+
+<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="2000">
+      <img src="{% static 'app/images/banner/22.jpg' %}" class="d-block w-100" alt="piano">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-weight: bold; color: white;">Yêu thương từ bốn chân</h5>
+        <p style="color: white;">Mang niềm vui và hạnh phúc từ những người bạn bốn chân đến mỗi gia đình</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="{% static 'app/images/banner/33.jpg' %}" class="d-block w-100" alt="aucostic">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-weight: bold; color: white;">Ngôi nhà thứ hai cho thú cưng</h5>
+        <p style="color: white;">Chúng tôi mang đến bạn những người bạn nhỏ đáng yêu, để mọi ngày đều tràn ngập niềm vui</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="{% static 'app/images/banner/44.jpg' %}" class="d-block w-100" alt="Bass">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-weight: bold; color: white;">Kết nối bạn và thú cưng</h5>
+        <p style="color: white;">Nơi bạn tìm thấy người bạn trung thành và đáng yêu nhất</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="{% static 'app/images/banner/55.jpg' %}" class="d-block w-100" alt="Keyboard">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-weight: bold; color: white;">Tình yêu trong từng bước chân</h5>
+        <p style="color: white;">Gắn kết tình cảm giữa bạn và thú cưng với dịch vụ tận tâm và chất lượng nhất</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br /><br /><br />
+
+<h1 class="text-center mt-4 mb-4 products">PRODUCTS</h1>
+<hr />
+{% endblock banner_slider %}
+
+{% block main-content %}
+<div class="container">
+  <div class="row">
+    {% for product in products %}
+      <div class="col-lg-3 overflow-hidden">
+        <div class="box-element product-card">
+          <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+          <div class="product-card-body">
+            <h6 class="product-card-title"><strong>{{ product.name }}</strong></h6>
+            <hr>
+            <button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add</button>
+            <a class="btn btn-outline-success" href="{% url 'detail' %}?id={{product.id}}">Check</a>
+            <h3 class="product-card-price" style="display: inline-block; float: right"><strong>$ {{ product.price }}</strong></h3>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock main-content %}
+#123
